@@ -20,14 +20,29 @@
     <h3>FRS MAHASISWA</h3>
     <div class="container">
         <div class="row row-cols-2">
-        <div class="p-3 border bg-dark">Nama :</div>
-        <div class="p-3 border bg-dark">NIM :</div>
-        <div class="p-3 border bg-dark">IPK/IPS :</div>
-        <div class="p-3 border bg-dark">Dosen Wali :</div>
-        <div class="p-3 border bg-dark">Batas SKS :</div>
-        <div class="p-3 border bg-dark">Jumlah SKS Tempuh :}</div>
+        <div class="p-3 border bg-dark">Nama : {{ $variables["nama"] }}</div>
+        <div class="p-3 border bg-dark">NIM : {{ $variables["nim"] }}</div>
+        <div class="p-3 border bg-dark">IPK/IPS : {{ $variables["ipk"] }}</div>
+        <div class="p-3 border bg-dark">Dosen Wali : {{ $variables["doswal"] }}</div>
+        <div class="p-3 border bg-dark">Batas SKS : {{ $variables["batas_sks"] }}</div>
+        <div class="p-3 border bg-dark">Jumlah SKS Tempuh : {{ $variables["jumlah_sks"] }}</div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-12">
+        <form action="/validasi" method="POST">
+          @csrf
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Apakah data diatas telah valid?</label>
+            <select class="form-control" id="exampleFormControlSelect1" name="disetujui">
+              <option value="iya">Setujui</option>
+              <option value="tidak">Tidak</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary" name="taskId" value="{{ $task[0]["id"] }}">Submit</button>
+        </form>
       </div>
-      <div class="row">
-          <a href="/update-status" class="btn btn-info w-100">SETUJUI FRS</a>
-      </div>
+    </div>
+    <br>
+</section>
 @endsection

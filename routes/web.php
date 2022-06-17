@@ -16,7 +16,9 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/', [HomeController::class, 'index']);
-  
+Route::post('/', [HomeController::class, 'indexPost']);
+
 Route::get('/admin', [HomeController::class, 'index1']);
-  
-Route::get('/detail', [HomeController::class, 'index2']);
+
+Route::get('/detail/{instanceId}', [HomeController::class, 'index2']);
+Route::post('/validasi', [HomeController::class, 'index3']);

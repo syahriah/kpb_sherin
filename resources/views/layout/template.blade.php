@@ -78,6 +78,13 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="/admin" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Admin
+              </p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="/logout" class="nav-link">
@@ -87,7 +94,6 @@
               </p>
             </a>
           </li>
-        </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

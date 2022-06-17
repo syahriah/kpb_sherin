@@ -17,41 +17,51 @@
           </div>
         </div>
     <h3>FRS MAHASISWA</h3>
-    <form class="row g-3">
+    @if(session("pesan"))
+    <div class="alert bg-success">
+        <h5>
+            <i class="fa fa-check"></i>
+            <strong>
+                Berhasil!
+            </strong>
+            {{ session("pesan") }}
+        </h5>
+    </div>
+    @endif
+    <form class="row g-3" action="/" method="POST">
         {{ csrf_field() }}
         <div class="col-md-6">
           <label for="nama" class="form-label">nama</label>
-          <input type="text" class="form-control" id="nama">
+          <input type="text" class="form-control" name="nama" id="nama">
         </div>
         <div class="col-md-6">
           <label for="nim" class="form-label">nim</label>
-          <input type="tekt" class="form-control" id="nim">
+          <input type="tekt" class="form-control" name="nim" id="nim">
         </div>
         <div class="col-12">
           <label for="ipk" class="form-label">IPK/IPS</label>
-          <input type="text" class="form-control" id="ipk" placeholder=". . .">
+          <input type="text" class="form-control" name="ipk" id="ipk">
         </div>
         <div class="col-12">
-          <label for="dosen" class="form-label">Dosen Wali</label>
-          <input type="text" class="form-control" id="dosen" placeholder=". . .">
+          <label for="doswal" class="form-label">Dosen Wali</label>
+          <input type="text" class="form-control" name="doswal" id="doswal">
         </div>
         <div class="col-12">
           <label for="batas_sks" class="form-label">Batas SKS</label>
-          <input type="text" class="form-control" id="batas_sks">
+          <input type="text" class="form-control" name="batas_sks" id="batas_sks">
         </div>
         <div class="col-12">
           <label for="jumlah_sks" class="form-label">Jumlah SKS Tempuh</label>
-          <input type="text" class="form-control" id="jumlah_sks">
+          <input type="text" class="form-control" name="jumlah_sks" id="jumlah_sks">
         </div>
         <br>
         <div class="col-12">
           <label for="matkul" class="form-label">Mata Kuliah</label>
-          <input type="text" class="form-control" id="matkul">
+          <input type="text" class="form-control" name="matkul" id="matkul">
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Simpan Data</button>
         </div>
-        </form>
       </form>
 </section>
 @endsection

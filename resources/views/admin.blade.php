@@ -18,6 +18,17 @@
         </div>
 
     <h3>FRS MAHASISWA</h3>
+    @if(session("pesan"))
+    <div class="alert bg-success">
+        <h5>
+            <i class="fa fa-check"></i>
+            <strong>
+                Berhasil!
+            </strong>
+            {{ session("pesan") }}
+        </h5>
+    </div>
+    @endif
     <table class="table table-dark table-striped" id="example2">
         <thead>
             <tr>
@@ -28,5 +39,19 @@
                 <th>Action</th>
             </tr>           
         </thead>
+        <tbody>
+            @foreach($variables as $variable)
+            <tr>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $variable["nama"] }}</td>
+                <td>{{ $variable["nim"] }}</td>
+                <td>{{ $variable["doswal"] }}</td>
+                <td>
+                    <a href="/detail/{{ $variable["instanceId"] }}" class="btn btn-info">Detail</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+                
     </table>
 @endsection
