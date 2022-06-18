@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function home()
     {
         return view('home');
     }
-    public function indexPost(Request $request)
+    public function startInstance(Request $request)
     {
         $startInstance =  Http::post(env("API_URL") . "/process-definition/" . env("PROCESS_DEFINITION_ID") . "/start", [
             "businessKey" => "",
@@ -58,8 +58,44 @@ class HomeController extends Controller
 
         return back()->with("pesan", "Data berhasil dikirim");
     }
+    public function updateData(Request $request)
+    {
+        Http::post(env("API_URL") . "/task/" . $request->taskId . "/submit-form", [
+            "variables" => [
+                "nama" => [
+                    "value" => $request->nama,
+                    "type" => "String"
+                ],
+                "nim" => [
+                    "value" => $request->nim,
+                    "type" => "String"
+                ],
+                "ipk" => [
+                    "value" => $request->ipk,
+                    "type" => "String"
+                ],
+                "doswal" => [
+                    "value" => $request->doswal,
+                    "type" => "String"
+                ],
+                "batas_sks" => [
+                    "value" => $request->batas_sks,
+                    "type" => "String"
+                ],
+                "jumlah_sks" => [
+                    "value" => $request->jumlah_sks,
+                    "type" => "String"
+                ],
+                "matkul" => [
+                    "value" => $request->matkul,
+                    "type" => "String"
+                ],
+            ]
+        ])->json();
+        return redirect("/admin")->with("pesan", "Data berhasil diupdate");
+    }
 
-    public function index1()
+    public function admin()
     {
         $listInstance = Http::post(env("API_URL") . "/process-instance", [
             "processDefinitionId" => env("PROCESS_DEFINITION_ID"),
@@ -110,7 +146,7 @@ class HomeController extends Controller
         return view('admin', compact('variables'));
     }
 
-    public function index2($instanceId)
+    public function detailInstance($instanceId)
     {
         $task = Http::post(env("API_URL") . "/task", [
             "processInstanceId" => $instanceId,
@@ -155,15 +191,33 @@ class HomeController extends Controller
             "matkul" => $matkul[0]["value"],
         ];
 
+        if ($task[0]["name"] == "Menginput data FRS") {
+            return view('home', compact('variables', 'task'));
+        }
+
         return view('detail', compact('variables', 'task'));
     }
 
-    public function index3(Request $request)
+    public function setujui(Request $request)
     {
         Http::post(env("API_URL") . "/task/" . $request->taskId . "/submit-form", [
             "variables" => [
                 "disetujui" => [
                     "value" => $request->disetujui,
+                    "type" => "String"
+                ],
+            ]
+        ])->json();
+
+        return redirect("/admin")->with("pesan", "Data berhasil divalidasi");
+    }
+
+    public function validasi(Request $request)
+    {
+        Http::post(env("API_URL") . "/task/" . $request->taskId . "/submit-form", [
+            "variables" => [
+                "validasi" => [
+                    "value" => "iya",
                     "type" => "String"
                 ],
             ]

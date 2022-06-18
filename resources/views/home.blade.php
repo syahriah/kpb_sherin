@@ -28,40 +28,91 @@
         </h5>
     </div>
     @endif
-    <form class="row g-3" action="/" method="POST">
+    @if (session('info'))
+    <div class="alert bg-info">
+        <h5>
+            <i class="fa fa-info"></i>
+            <strong>
+                Informasi!
+            </strong>
+            {{ session('info') }}
+        </h5>
+    </div>
+    @endif
+    @isset($variables)
+      <form class="row g-3" action="/update-data" method="POST">
         {{ csrf_field() }}
+        <input type="hidden" name="taskId" value="{{ $task[0]["id"] }}">
         <div class="col-md-6">
           <label for="nama" class="form-label">nama</label>
-          <input type="text" class="form-control" name="nama" id="nama">
+          <input type="text" class="form-control" required value="{{ $variables["nama"] }}" name="nama" id="nama">
         </div>
         <div class="col-md-6">
           <label for="nim" class="form-label">nim</label>
-          <input type="tekt" class="form-control" name="nim" id="nim">
+          <input type="tekt" class="form-control" required value="{{ $variables["nim"] }}" name="nim" id="nim">
         </div>
         <div class="col-12">
           <label for="ipk" class="form-label">IPK/IPS</label>
-          <input type="text" class="form-control" name="ipk" id="ipk">
+          <input type="text" class="form-control" required value="{{ $variables["ipk"] }}" name="ipk" id="ipk">
         </div>
         <div class="col-12">
           <label for="doswal" class="form-label">Dosen Wali</label>
-          <input type="text" class="form-control" name="doswal" id="doswal">
+          <input type="text" class="form-control" required value="{{ $variables["doswal"] }}" name="doswal" id="doswal">
         </div>
         <div class="col-12">
           <label for="batas_sks" class="form-label">Batas SKS</label>
-          <input type="text" class="form-control" name="batas_sks" id="batas_sks">
+          <input type="text" class="form-control" required value="{{ $variables["batas_sks"] }}" name="batas_sks" id="batas_sks">
         </div>
         <div class="col-12">
           <label for="jumlah_sks" class="form-label">Jumlah SKS Tempuh</label>
-          <input type="text" class="form-control" name="jumlah_sks" id="jumlah_sks">
+          <input type="text" class="form-control" required value="{{ $variables["jumlah_sks"] }}" name="jumlah_sks" id="jumlah_sks">
         </div>
         <br>
         <div class="col-12">
           <label for="matkul" class="form-label">Mata Kuliah</label>
-          <input type="text" class="form-control" name="matkul" id="matkul">
+          <input type="text" class="form-control" required value="{{ $variables["matkul"] }}" name="matkul" id="matkul">
         </div>
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Simpan Data</button>
         </div>
       </form>
+    @else
+      <form class="row g-3" action="/" method="POST">
+          {{ csrf_field() }}
+          <div class="col-md-6">
+            <label for="nama" class="form-label">nama</label>
+            <input type="text" class="form-control" required name="nama" id="nama">
+          </div>
+          <div class="col-md-6">
+            <label for="nim" class="form-label">nim</label>
+            <input type="tekt" class="form-control" required name="nim" id="nim">
+          </div>
+          <div class="col-12">
+            <label for="ipk" class="form-label">IPK/IPS</label>
+            <input type="text" class="form-control" required name="ipk" id="ipk">
+          </div>
+          <div class="col-12">
+            <label for="doswal" class="form-label">Dosen Wali</label>
+            <input type="text" class="form-control" required name="doswal" id="doswal">
+          </div>
+          <div class="col-12">
+            <label for="batas_sks" class="form-label">Batas SKS</label>
+            <input type="text" class="form-control" required name="batas_sks" id="batas_sks">
+          </div>
+          <div class="col-12">
+            <label for="jumlah_sks" class="form-label">Jumlah SKS Tempuh</label>
+            <input type="text" class="form-control" required name="jumlah_sks" id="jumlah_sks">
+          </div>
+          <br>
+          <div class="col-12">
+            <label for="matkul" class="form-label">Mata Kuliah</label>
+            <input type="text" class="form-control" required name="matkul" id="matkul">
+          </div>
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary">Simpan Data</button>
+          </div>
+      </form>
+    @endisset
+
 </section>
 @endsection

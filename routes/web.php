@@ -15,10 +15,12 @@ use App\Http\Controllers\HomeController;
 */
 
 
-Route::get('/', [HomeController::class, 'index']);
-Route::post('/', [HomeController::class, 'indexPost']);
+Route::get('/', [HomeController::class, 'home']);
+Route::post('/', [HomeController::class, 'startInstance']);
+Route::post('/update-data', [HomeController::class, 'updateData']);
 
-Route::get('/admin', [HomeController::class, 'index1']);
+Route::get('/admin', [HomeController::class, 'admin']);
 
-Route::get('/detail/{instanceId}', [HomeController::class, 'index2']);
-Route::post('/validasi', [HomeController::class, 'index3']);
+Route::get('/detail/{instanceId}', [HomeController::class, 'detailInstance']);
+Route::post('/setujui', [HomeController::class, 'setujui']);
+Route::post('/validasi', [HomeController::class, 'validasi']);

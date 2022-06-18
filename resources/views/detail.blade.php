@@ -30,17 +30,23 @@
     <br>
     <div class="row">
       <div class="col-md-12">
-        <form action="/validasi" method="POST">
+        @if($task[0]["name"] == "Meninjau data FRS")
+        <form action="/setujui" method="POST">
           @csrf
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Apakah data diatas telah valid?</label>
+            <label for="exampleFormControlSelect1">Apakah data diatas telah sesuai?</label>
             <select class="form-control" id="exampleFormControlSelect1" name="disetujui">
-              <option value="iya">Setujui</option>
+              <option value="iya">Iya</option>
               <option value="tidak">Tidak</option>
             </select>
           </div>
           <button type="submit" class="btn btn-primary" name="taskId" value="{{ $task[0]["id"] }}">Submit</button>
         </form>
+        @else
+        <form action="/validasi" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-primary w-100" name="taskId" value="{{ $task[0]["id"] }}">Validasi</button>
+        @endif
       </div>
     </div>
     <br>
