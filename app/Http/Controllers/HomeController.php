@@ -13,6 +13,11 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function login()
+    {
+        return view('login');
+    }
+
     public function startInstance(Request $request)
     {
         $startInstance =  Http::post(env("API_URL") . "/process-definition/" . env("PROCESS_DEFINITION_ID") . "/start", [

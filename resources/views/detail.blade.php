@@ -26,6 +26,7 @@
         <div class="p-3 border bg-dark">Dosen Wali : {{ $variables["doswal"] }}</div>
         <div class="p-3 border bg-dark">Batas SKS : {{ $variables["batas_sks"] }}</div>
         <div class="p-3 border bg-dark">Jumlah SKS Tempuh : {{ $variables["jumlah_sks"] }}</div>
+        <div class="p-6 border bg-dark">Jumlah SKS Tempuh : {{ $variables["matkul"] }}</div>
     </div>
     <br>
     <div class="row">

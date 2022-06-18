@@ -20,7 +20,8 @@ Route::post('/', [HomeController::class, 'startInstance']);
 Route::post('/update-data', [HomeController::class, 'updateData']);
 
 Route::get('/admin', [HomeController::class, 'admin']);
-
+Route::get('/login', [HomeController::class, 'login']);
 Route::get('/detail/{instanceId}', [HomeController::class, 'detailInstance']);
 Route::post('/setujui', [HomeController::class, 'setujui']);
 Route::post('/validasi', [HomeController::class, 'validasi']);
+
