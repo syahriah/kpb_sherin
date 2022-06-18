@@ -17,6 +17,25 @@ class HomeController extends Controller
     {
         return view('login');
     }
+    public function loginPost(Request $request)
+    {
+        $response = Http::post(env("API_URL") . "/identity/verify", [
+            "username" => $request->username,
+            "password" => $request->password
+        ]);
+
+        if ($response["authenticated"]) {
+            $request->session()->put("user", $request->all());
+            return redirect("/");
+        } else {
+            return redirect()->back()->with("pesan", "Username or Password is incorrect");
+        }
+    }
+    public function logout()
+    {
+        session()->forget("user");
+        return redirect("/login");
+    }
 
     public function startInstance(Request $request)
     {
